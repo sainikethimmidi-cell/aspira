@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #101828;
+  --color-brand: #5146e5;
+  --font-sans: Inter, Manrope, system-ui, sans-serif;
+}
+
+body {
+  @apply bg-slate-50 text-navy antialiased;
+}
