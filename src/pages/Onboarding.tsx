@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const input = 'mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 p-3 outline-none focus:border-brand'
 
-export default function Register() {
+export default function Onboarding() {
   const navigate = useNavigate()
   const [f, setF] = useState({
-    name: '', regNo: '', email: '', password: '',
+    name: '', regNo: localStorage.getItem('aspira_regno') || '', email: '',
     leetcode: '', gfg: '', linkedin: '', other: '',
     track: 'placements', role: 'SDE',
   })
@@ -17,6 +17,7 @@ export default function Register() {
     e.preventDefault()
     // TODO: save f to your database, then create the student's roadmap
     console.log(f)
+    localStorage.setItem('aspira_onboarded', 'yes')
     navigate('/student/dashboard')
   }
 
@@ -30,14 +31,13 @@ export default function Register() {
   return (
     <div className="grid min-h-screen place-items-center p-4">
       <form onSubmit={submit} className="w-full max-w-lg rounded-3xl bg-white p-8 shadow-xl">
-        <Link to="/" className="text-sm text-slate-500">← Back</Link>
-        <h1 className="mb-5 mt-3 text-2xl font-bold">Student Registration</h1>
+        <h1 className="text-2xl font-bold">Complete your profile</h1>
+        <p className="mb-5 mt-1 text-sm text-slate-500">Fill in your details once to get your personal roadmap.</p>
 
         <h2 className="mb-2 text-xs font-bold uppercase tracking-widest text-violet-500">Basic details</h2>
         {field('Full name', 'name')}
         {field('Registration number', 'regNo')}
         {field('Email', 'email', 'email')}
-        {field('Password', 'password', 'password')}
 
         <h2 className="mb-2 mt-5 text-xs font-bold uppercase tracking-widest text-violet-500">Profile links</h2>
         {field('LeetCode link', 'leetcode', 'url')}
@@ -60,7 +60,7 @@ export default function Register() {
           </select>
         )}
 
-        <button className="mt-6 w-full rounded-xl bg-gradient-to-r from-brand to-violet-500 p-3 font-bold text-white">Create account</button>
+        <button className="mt-6 w-full rounded-xl bg-gradient-to-r from-brand to-violet-500 p-3 font-bold text-white">Save and continue</button>
       </form>
     </div>
   )

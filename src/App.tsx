@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
-import Register from './pages/Register'
+import Onboarding from './pages/Onboarding'
 import Placeholder from './pages/Placeholder'
 import DashboardLayout from './layouts/DashboardLayout'
 import StudentDashboard from './pages/student/Dashboard'
@@ -22,7 +22,7 @@ export default function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/student/login" element={<Login role="student" />} />
       <Route path="/employee/login" element={<Login role="employee" />} />
-      <Route path="/student/register" element={<Register />} />
+      <Route path="/student/onboarding" element={<Onboarding />} />
 
       <Route path="/student" element={<DashboardLayout title="Student" base="/student" links={studentLinks} />}>
         <Route index element={<Navigate to="dashboard" replace />} />
